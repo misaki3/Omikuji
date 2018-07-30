@@ -32,9 +32,6 @@ String today = sdf.format(date);
     <body>
         <h1><%=today %>の運勢は<%=luck%>です</h1>
         <table>
-        
-        
-        
       <tr>
         <td><a href='/color'>今日のラッキーカラーは...</a></td>
       </tr>
