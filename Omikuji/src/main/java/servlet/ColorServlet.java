@@ -1,8 +1,9 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+*/ 
 package servlet;
 
 import java.io.IOException;
@@ -20,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author g16938sm
  */
-@WebServlet(name = "OmikujiServlet", urlPatterns = {"/OmikujiServlet"})
-public class OmikujiServlet extends HttpServlet {
+@WebServlet(name = "ColorServlet", urlPatterns = {"/color"})
+public class ColorServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,33 +35,24 @@ public class OmikujiServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        String[] colorArray = {"red", "pink", "yellow", "green", "purple"};
+        int index = (int) (Math.random() * colorArray.length);
+        String color = colorArray[index];
+
         
-        String[] luckArray = {"大吉", "中吉", "小吉", "吉", "末吉", "凶", "大凶"}; 
-        int index = (int) (Math.random()*luckArray.length);
-        String luck = luckArray[index];
-        
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        String today = sdf.format(date);
-        
+
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         try /*(PrintWriter out = response.getWriter())*/ {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
-            out.println("<head>");
-            out.println("<title>すっきり占い</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet OmikujiServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("<p>" + today + "の運勢は" +luck+ "です </p>");
+            out.println("<p>" + "今日のラッキーカラーは" + "<h1>" + color + "</h1>" + "です </p>");
+            out.println("<body bgcolor = " + color + ">");
             out.println("</html>");
-           
-            
-        }finally{
+        } finally {
             out.close();
         }
     }
